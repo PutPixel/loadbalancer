@@ -2,7 +2,6 @@ package loadbalancer;
 
 import loadbalancer.nodes.info.Node;
 import loadbalancer.nodes.info.NodeParametr;
-
 import java.math.BigDecimal;
 import java.util.List;
 

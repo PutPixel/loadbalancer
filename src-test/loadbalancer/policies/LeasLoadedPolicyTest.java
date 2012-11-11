@@ -2,7 +2,6 @@ package loadbalancer.policies;
 
 import loadbalancer.AbstractTest;
 import loadbalancer.Balancer;
-import loadbalancer.policies.RoundRobinPolicy;
 
 import org.hamcrest.core.AnyOf;
 import org.hamcrest.core.Is;
