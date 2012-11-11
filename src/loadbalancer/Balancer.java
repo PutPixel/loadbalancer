@@ -15,10 +15,13 @@ public class Balancer {
 		this.policy = Preconditions.checkNotNull(policy);
 	}
 
-	public Node getBestNodeToInvoke(List<Node> nodes) {
-		// TODO thread safe invocation
-		Node node = Iterables.getFirst(policy.balance(nodes), null);
+	public final Node getBestNodeToInvoke(List<Node> nodes) {
+		Node node = doGetBestNode(policy.balance(nodes));
 		return node;
+	}
+
+	protected Node doGetBestNode(List<Node> orderedNodes) {
+		return Iterables.getFirst(orderedNodes, null);
 	}
 
 }

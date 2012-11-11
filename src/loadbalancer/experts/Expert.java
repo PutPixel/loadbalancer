@@ -3,6 +3,9 @@ package loadbalancer.experts;
 import java.math.BigDecimal;
 import java.util.List;
 
+import loadbalancer.BalancingException;
+import loadbalancer.nodes.info.NodeParametr;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
@@ -25,6 +28,11 @@ public class Expert {
 		public List<Range> getRanges() {
 			return ImmutableList.copyOf(ranges);
 		}
+
+		@Override
+		public String toString() {
+			return "RangesForParametr [parametrId=" + parametrId + "]";
+		}
 	}
 
 	static class Range {
@@ -33,12 +41,16 @@ public class Expert {
 		private BigDecimal score;
 
 		public boolean acceptsPoint(BigDecimal point) {
-			return low.compareTo(point) >= 0 && high.compareTo(point) < 0;
+			return point.compareTo(low) >= 0 && point.compareTo(high) < 0;
 		}
 
 		public BigDecimal getScore() {
 			return score;
 		}
+	}
+
+	public static ExpertBuilder build() {
+		return new ExpertBuilder();
 	}
 
 	public static class ExpertBuilder {
@@ -82,14 +94,27 @@ public class Expert {
 		public ParametrBuilder param(String paramId) {
 			return expertBuilder.param(paramId);
 		}
+
+		public Expert build() {
+			return expertBuilder.build();
+		}
 	}
 
 	public ExpertBuilder builder() {
 		return new ExpertBuilder();
 	}
 
-	public List<RangesForParametr> getParametrsRanges() {
-		return parametrsRanges;
+	public BigDecimal getScoreForParametr(NodeParametr param) {
+		for (RangesForParametr rangesForParametr : parametrsRanges) {
+			if (rangesForParametr.parametrId.equals(param.getParametrId())) {
+				for (Range range : rangesForParametr.getRanges()) {
+					if (range.acceptsPoint(param.getValue())) {
+						return range.getScore();
+					}
+				}
+			}
+		}
+		throw new BalancingException("No score for parametr " + param + " avl parametrs are " + parametrsRanges);
 	}
 
 }

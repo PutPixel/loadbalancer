@@ -18,7 +18,7 @@ public class NodeParametr {
 		return parametrId;
 	}
 
-	public BigDecimal getParametrValue() {
+	public BigDecimal getValue() {
 		return parametrValue;
 	}
 

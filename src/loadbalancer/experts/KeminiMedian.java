@@ -114,21 +114,20 @@ public class KeminiMedian<T extends Comparable<T>> {
 		int[][] baseMatrix = baseOptionComporation.getComporationMatrix();
 		int[][] matrixToSubtract = comparedOptionComporation.getComporationMatrix();
 		int[][] result = subtractMatrix(baseMatrix, matrixToSubtract);
-		
+
 		int summ = 0;
-		
 		for (int[] columns : result) {
-			summ+=summ(columns);
+			summ += summ(columns);
 		}
 		return summ;
 	}
 
 	private int summ(int[] columns) {
-		int summ2 = 0;
+		int summ = 0;
 		for (int row : columns) {
-			summ2 += Math.abs(row);
+			summ += Math.abs(row);
 		}
-		return summ2;
+		return summ;
 	}
 
 	private int[][] subtractMatrix(int[][] baseMatrix, int[][] matrixToSubtract) {

@@ -25,7 +25,7 @@ public class LeastLoadedPolicy implements IBalancerPolicy {
 			public BigDecimal apply(Node input) {
 				BigDecimal summ = BigDecimal.ZERO;
 				for (NodeParametr param : input.getParametrs()) {
-					summ = summ.add(param.getParametrValue().divide(
+					summ = summ.add(param.getValue().divide(
 							highestParams.get(param.getParametrId()), 5,
 							BigDecimal.ROUND_HALF_UP));
 				}
@@ -41,8 +41,8 @@ public class LeastLoadedPolicy implements IBalancerPolicy {
 				String paramId = nodeParametr.getParametrId();
 				BigDecimal value = highestParams.get(paramId);
 				if (value == null
-						|| value.compareTo(nodeParametr.getParametrValue()) < 0) {
-					highestParams.put(paramId, nodeParametr.getParametrValue());
+						|| value.compareTo(nodeParametr.getValue()) < 0) {
+					highestParams.put(paramId, nodeParametr.getValue());
 				}
 			}
 		}

@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 
-public class Node {
+public class Node implements Comparable<Node> {
 
 	private final String nodeId;
 
@@ -27,5 +27,10 @@ public class Node {
 	@Override
 	public String toString() {
 		return "Node [nodeId=" + nodeId + "]";
+	}
+
+	@Override
+	public int compareTo(Node o) {
+		return nodeId.compareTo(o.nodeId);
 	}
 }
