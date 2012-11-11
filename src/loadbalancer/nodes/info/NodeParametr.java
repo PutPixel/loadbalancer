@@ -22,4 +22,10 @@ public class NodeParametr {
 		return parametrValue;
 	}
 
+	@Override
+	public String toString() {
+		return "NodeParametr [parametrId=" + parametrId + ", parametrValue="
+				+ parametrValue + "]";
+	}
+
 }

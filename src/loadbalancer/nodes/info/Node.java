@@ -23,4 +23,9 @@ public class Node {
 	public List<NodeParametr> getParametrs() {
 		return parametrs;
 	}
+
+	@Override
+	public String toString() {
+		return "Node [nodeId=" + nodeId + "]";
+	}
 }

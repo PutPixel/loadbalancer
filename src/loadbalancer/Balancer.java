@@ -16,7 +16,9 @@ public class Balancer {
 	}
 
 	public Node getBestNodeToInvoke(List<Node> nodes) {
-		return Iterables.getFirst(policy.balance(nodes), null);
+		// TODO thread safe invocation
+		Node node = Iterables.getFirst(policy.balance(nodes), null);
+		return node;
 	}
 
 }
