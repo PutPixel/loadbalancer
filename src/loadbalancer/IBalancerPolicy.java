@@ -4,6 +4,9 @@ import java.util.List;
 
 import loadbalancer.nodes.info.Node;
 
+/**
+ * Policy for balancing load. Should be thread safe.
+ */
 public interface IBalancerPolicy {
 
 	/**

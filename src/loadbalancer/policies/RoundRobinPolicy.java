@@ -1,4 +1,4 @@
-package loadbalancer.roundrobin;
+package loadbalancer.policies;
 
 import java.util.List;
 
@@ -50,8 +50,8 @@ public class RoundRobinPolicy implements IBalancerPolicy {
 			List<Node> firstChain = sortedByIdCopy.subList(barrierIndex + 1,
 					sortedByIdCopy.size());
 			List<Node> lastChain = sortedByIdCopy.subList(0, barrierIndex + 1);
-			return ImmutableList.<Node> builder()
-					.addAll(firstChain).addAll(lastChain).build();
+			return ImmutableList.<Node> builder().addAll(firstChain)
+					.addAll(lastChain).build();
 		}
 		return sortedByIdCopy;
 	}
