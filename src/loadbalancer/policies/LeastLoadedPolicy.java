@@ -26,10 +26,19 @@ public class LeastLoadedPolicy implements IBalancerPolicy {
 				BigDecimal summ = BigDecimal.ZERO;
 				for (NodeParametr param : input.getParametrs()) {
 					summ = summ.add(param.getValue().divide(
-							highestParams.get(param.getParametrId()), 5,
+							getDevisor(highestParams, param), 5,
 							BigDecimal.ROUND_HALF_UP));
 				}
 				return summ;
+			}
+
+			private BigDecimal getDevisor(
+					final Map<String, BigDecimal> highestParams,
+					NodeParametr param) {
+				BigDecimal devisor = highestParams.get(param.getParametrId());
+				if (BigDecimal.ZERO.compareTo(devisor) == 0)
+					return BigDecimal.ONE;
+				return devisor;
 			}
 		}).sortedCopy(avlNodes);
 	}

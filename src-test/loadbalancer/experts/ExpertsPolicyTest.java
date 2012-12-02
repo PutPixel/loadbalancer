@@ -27,13 +27,55 @@ public class ExpertsPolicyTest extends AbstractTest {
 	@Test
 	public void best_on_cluster_two() {
 		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
-	}
-
-	public static void main(String[] args) {
-		ExpertsPolicyTest leasLoadedPolicyTest = new ExpertsPolicyTest();
-		ExpertsPolicyTest.setUpBeforeClass();
-		leasLoadedPolicyTest.best_on_cluster_one();
-		leasLoadedPolicyTest.best_on_cluster_two();
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
+		assertThat(balancer.getBestNodeToInvoke(nodes_2), Is.is(nodes_2.get(0)));
 	}
 
 }
