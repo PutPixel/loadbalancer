@@ -9,11 +9,11 @@ import loadbalancer.nodes.info.NodeParametr;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-public class Expert {
+public class Agent {
 
 	private final List<RangesForParametr> parametrsRanges;
 
-	private Expert(List<RangesForParametr> parametrsRanges) {
+	private Agent(List<RangesForParametr> parametrsRanges) {
 		this.parametrsRanges = ImmutableList.copyOf(parametrsRanges);
 	}
 
@@ -49,32 +49,32 @@ public class Expert {
 		}
 	}
 
-	public static ExpertBuilder build() {
-		return new ExpertBuilder();
+	public static AgentBuilder build() {
+		return new AgentBuilder();
 	}
 
-	public static class ExpertBuilder {
+	public static class AgentBuilder {
 
 		private final List<RangesForParametr> parametrsRanges = Lists
 				.newArrayList();
 
-		private ExpertBuilder() {
+		private AgentBuilder() {
 		}
 
 		public ParametrBuilder param(String paramId) {
 			return new ParametrBuilder(paramId, this);
 		}
 
-		public Expert build() {
-			return new Expert(parametrsRanges);
+		public Agent build() {
+			return new Agent(parametrsRanges);
 		}
 	}
 
 	public static class ParametrBuilder {
 		private RangesForParametr rangesForParametr;
-		private final ExpertBuilder expertBuilder;
+		private final AgentBuilder expertBuilder;
 
-		private ParametrBuilder(String paramId, ExpertBuilder expertBuilder) {
+		private ParametrBuilder(String paramId, AgentBuilder expertBuilder) {
 			this.expertBuilder = expertBuilder;
 			rangesForParametr = new RangesForParametr();
 			rangesForParametr.parametrId = paramId;
@@ -95,13 +95,13 @@ public class Expert {
 			return expertBuilder.param(paramId);
 		}
 
-		public Expert build() {
+		public Agent build() {
 			return expertBuilder.build();
 		}
 	}
 
-	public ExpertBuilder builder() {
-		return new ExpertBuilder();
+	public AgentBuilder builder() {
+		return new AgentBuilder();
 	}
 
 	public BigDecimal getScoreForParametr(NodeParametr param) {
@@ -114,7 +114,8 @@ public class Expert {
 				}
 			}
 		}
-		throw new BalancingException("No score for parametr " + param + " avl parametrs are " + parametrsRanges);
+		throw new BalancingException("No score for parametr " + param
+				+ " avl parametrs are " + parametrsRanges);
 	}
 
 }

@@ -9,13 +9,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 @SuppressWarnings("unchecked")
-public class ExpertsPolicyTest extends AbstractTest {
+public class AgentPolicyTest extends AbstractTest {
 
 	private static Balancer balancer;
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
-		balancer = new Balancer(new ExpertsPolicy());
+		balancer = new Balancer(new AgentsPolicy());
 	}
 
 	@Test
