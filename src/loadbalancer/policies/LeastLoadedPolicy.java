@@ -1,17 +1,16 @@
 package loadbalancer.policies;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.base.Function;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Ordering;
 
 import loadbalancer.IBalancerPolicy;
 import loadbalancer.nodes.info.Node;
 import loadbalancer.nodes.info.NodeParametr;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
 
 public class LeastLoadedPolicy implements IBalancerPolicy {
 

@@ -3,17 +3,15 @@ package loadbalancer.experts;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.google.common.base.Function;
-import com.google.common.collect.FluentIterable;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-import com.sun.rmi.rmid.ExecOptionPermission;
-
 import loadbalancer.IBalancerPolicy;
 import loadbalancer.experts.KeminiMedian.AgentOpinion;
 import loadbalancer.nodes.info.Node;
 import loadbalancer.nodes.info.NodeParametr;
+
+import com.google.common.base.Function;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Ordering;
 
 public class AgentsPolicy implements IBalancerPolicy {
 	
