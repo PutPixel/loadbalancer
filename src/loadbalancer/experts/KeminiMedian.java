@@ -13,7 +13,7 @@ import com.google.common.collect.Maps;
 
 public class KeminiMedian<T extends Comparable<T>> {
 
-	public static class ExpertOpinion<T extends Comparable<T>> {
+	public static class AgentOpinion<T extends Comparable<T>> {
 		private List<T> range;
 
 		public List<T> getRange() {
@@ -24,9 +24,9 @@ public class KeminiMedian<T extends Comparable<T>> {
 			this.range = Preconditions.checkNotNull(range);
 		}
 
-		public static <T extends Comparable<T>> ExpertOpinion<T> createOpinion(
+		public static <T extends Comparable<T>> AgentOpinion<T> createOpinion(
 				List<T> range) {
-			ExpertOpinion<T> expertOpinion = new ExpertOpinion<T>();
+			AgentOpinion<T> expertOpinion = new AgentOpinion<T>();
 			expertOpinion.setRange(range);
 			return expertOpinion;
 		}
@@ -36,33 +36,33 @@ public class KeminiMedian<T extends Comparable<T>> {
 		}
 	}
 
-	private List<ExpertOpinion<T>> opinions;
-	private Map<ExpertOpinion<T>, BinariComporation<T>> comporationMap;
+	private List<AgentOpinion<T>> opinions;
+	private Map<AgentOpinion<T>, BinaryComporation<T>> comporationMap;
 
-	public KeminiMedian(List<ExpertOpinion<T>> opinions) {
+	public KeminiMedian(List<AgentOpinion<T>> opinions) {
 		checkSizeOfAllOpinionsIsSame(opinions);
 		this.opinions = ImmutableList.copyOf(opinions);
-		FluentIterable<BinariComporation<T>> comporations = FluentIterable
+		FluentIterable<BinaryComporation<T>> comporations = FluentIterable
 				.from(opinions).transform(
-						new Function<ExpertOpinion<T>, BinariComporation<T>>() {
+						new Function<AgentOpinion<T>, BinaryComporation<T>>() {
 
 							@Override
-							public BinariComporation<T> apply(
-									ExpertOpinion<T> input) {
-								return BinariComporation.create(input);
+							public BinaryComporation<T> apply(
+									AgentOpinion<T> input) {
+								return BinaryComporation.create(input);
 							}
 						});
 
 		comporationMap = Maps.newHashMap();
-		for (BinariComporation<T> binariComporation : comporations) {
+		for (BinaryComporation<T> binariComporation : comporations) {
 			comporationMap.put(binariComporation.getOpinion(),
 					binariComporation);
 		}
 	}
 
-	private void checkSizeOfAllOpinionsIsSame(List<ExpertOpinion<T>> opinions) {
+	private void checkSizeOfAllOpinionsIsSame(List<AgentOpinion<T>> opinions) {
 		int baseSize = opinions.get(0).range.size();
-		for (ExpertOpinion<T> expertOpinion : opinions) {
+		for (AgentOpinion<T> expertOpinion : opinions) {
 			if (expertOpinion.range.size() != baseSize) {
 				throw new BalancingException(
 						"Opnions have diffrent number of nodes");
@@ -71,21 +71,21 @@ public class KeminiMedian<T extends Comparable<T>> {
 	}
 
 	public static <T extends Comparable<T>> KeminiMedian<T> createMedian(
-			List<ExpertOpinion<T>> opinions) {
+			List<AgentOpinion<T>> opinions) {
 		return new KeminiMedian<T>(opinions);
 	}
 
-	public ExpertOpinion<T> electBest() {
+	public AgentOpinion<T> electBest() {
 		int opinionsCount = opinions.size();
 		int[][] pareComporationMatrix = new int[opinionsCount][opinionsCount];
 
 		for (int i = 0; i < opinions.size(); i++) {
-			ExpertOpinion<T> baseOpinion = opinions.get(i);
-			BinariComporation<T> baseOptionComporation = comporationMap
+			AgentOpinion<T> baseOpinion = opinions.get(i);
+			BinaryComporation<T> baseOptionComporation = comporationMap
 					.get(baseOpinion);
 			for (int j = 0; j < opinions.size(); j++) {
-				ExpertOpinion<T> comparedOpinion = opinions.get(j);
-				BinariComporation<T> comparedOptionComporation = comporationMap
+				AgentOpinion<T> comparedOpinion = opinions.get(j);
+				BinaryComporation<T> comparedOptionComporation = comporationMap
 						.get(comparedOpinion);
 				int distance = Math.abs(computeDistance(baseOptionComporation, comparedOptionComporation));
 				pareComporationMatrix[i][j] = distance;
@@ -109,8 +109,8 @@ public class KeminiMedian<T extends Comparable<T>> {
 		return opinions.get(bestOptionIndex);
 	}
 
-	private int computeDistance(BinariComporation<T> baseOptionComporation,
-			BinariComporation<T> comparedOptionComporation) {
+	private int computeDistance(BinaryComporation<T> baseOptionComporation,
+			BinaryComporation<T> comparedOptionComporation) {
 		int[][] baseMatrix = baseOptionComporation.getComporationMatrix();
 		int[][] matrixToSubtract = comparedOptionComporation.getComporationMatrix();
 		int[][] result = subtractMatrix(baseMatrix, matrixToSubtract);

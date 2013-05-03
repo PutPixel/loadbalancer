@@ -11,7 +11,7 @@ import com.google.common.collect.Ordering;
 import com.sun.rmi.rmid.ExecOptionPermission;
 
 import loadbalancer.IBalancerPolicy;
-import loadbalancer.experts.KeminiMedian.ExpertOpinion;
+import loadbalancer.experts.KeminiMedian.AgentOpinion;
 import loadbalancer.nodes.info.Node;
 import loadbalancer.nodes.info.NodeParametr;
 
@@ -77,11 +77,11 @@ public class AgentsPolicy implements IBalancerPolicy {
 
 	@Override
 	public List<Node> balance(final List<Node> avlNodes) {
-		List<ExpertOpinion<Node>> ranges = FluentIterable.from(experts)
-				.transform(new Function<Agent, ExpertOpinion<Node>>() {
+		List<AgentOpinion<Node>> ranges = FluentIterable.from(experts)
+				.transform(new Function<Agent, AgentOpinion<Node>>() {
 
 					@Override
-					public ExpertOpinion<Node> apply(Agent input) {
+					public AgentOpinion<Node> apply(Agent input) {
 						return sortNodesAcordingToExpert(input, avlNodes);
 					}
 
@@ -89,7 +89,7 @@ public class AgentsPolicy implements IBalancerPolicy {
 		return KeminiMedian.createMedian(ranges).electBest().getRange();
 	}
 
-	private ExpertOpinion<Node> sortNodesAcordingToExpert(
+	private AgentOpinion<Node> sortNodesAcordingToExpert(
 			final Agent expert, List<Node> avlNodes) {
 		List<Node> sortedCopy = Ordering.natural().reverse().onResultOf(new Function<Node, BigDecimal>() {
 
@@ -104,6 +104,6 @@ public class AgentsPolicy implements IBalancerPolicy {
 			}
 		}).sortedCopy(avlNodes);
 		
-		return ExpertOpinion.createOpinion(sortedCopy);
+		return AgentOpinion.createOpinion(sortedCopy);
 	}
 }

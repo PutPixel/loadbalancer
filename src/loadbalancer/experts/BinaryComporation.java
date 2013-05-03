@@ -5,14 +5,14 @@ import java.util.List;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Ordering;
 
-import loadbalancer.experts.KeminiMedian.ExpertOpinion;
+import loadbalancer.experts.KeminiMedian.AgentOpinion;
 
-public class BinariComporation<T extends Comparable<T>> {
+public class BinaryComporation<T extends Comparable<T>> {
 
-	private final ExpertOpinion<T> opinion;
+	private final AgentOpinion<T> opinion;
 	private final int[][] comporationMatrix;
 
-	public BinariComporation(ExpertOpinion<T> opinion) {
+	public BinaryComporation(AgentOpinion<T> opinion) {
 		this.opinion = Preconditions.checkNotNull(opinion);
 		List<T> range = opinion.getRange();
 		int optionsCount = range.size();
@@ -33,12 +33,12 @@ public class BinariComporation<T extends Comparable<T>> {
 		}
 	}
 
-	public static <T extends Comparable<T>> BinariComporation<T> create(
-			ExpertOpinion<T> opinion) {
-		return new BinariComporation<T>(opinion);
+	public static <T extends Comparable<T>> BinaryComporation<T> create(
+			AgentOpinion<T> opinion) {
+		return new BinaryComporation<T>(opinion);
 	}
 
-	public ExpertOpinion<T> getOpinion() {
+	public AgentOpinion<T> getOpinion() {
 		return opinion;
 	}
 

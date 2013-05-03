@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import loadbalancer.experts.KeminiMedian.ExpertOpinion;
+import loadbalancer.experts.KeminiMedian.AgentOpinion;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class KeminiMedianTest {
 
 	@Test
 	public void example() {
-		List<ExpertOpinion<String>> opinions = Lists.newArrayList();
+		List<AgentOpinion<String>> opinions = Lists.newArrayList();
 		opinions.add(createExpertOpinion("a3", "a4", "a1", "a5", "a2"));
 		opinions.add(createExpertOpinion("a4", "a1", "a3", "a5", "a2"));
 		opinions.add(createExpertOpinion("a1", "a5", "a2", "a4", "a3"));
@@ -24,15 +24,15 @@ public class KeminiMedianTest {
 		opinions.add(createExpertOpinion("a4", "a3", "a1", "a2", "a5"));
 		opinions.add(createExpertOpinion("a2", "a4", "a5", "a1", "a3"));
 
-		ExpertOpinion<String> best = KeminiMedian.createMedian(opinions)
+		AgentOpinion<String> best = KeminiMedian.createMedian(opinions)
 				.electBest();
 		List<String> range = best.getRange();
 		String[] result = { "a4", "a1", "a3", "a5", "a2" };
 		assertArrayEquals(result, range.toArray());
 	}
 
-	private ExpertOpinion<String> createExpertOpinion(String... elements) {
-		return ExpertOpinion.createOpinion(Lists.newArrayList(elements));
+	private AgentOpinion<String> createExpertOpinion(String... elements) {
+		return AgentOpinion.createOpinion(Lists.newArrayList(elements));
 	}
 
 }

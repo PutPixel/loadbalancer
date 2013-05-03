@@ -1,10 +1,14 @@
 package loadbalancer.policies;
 
+import java.util.Collections;
+
 import loadbalancer.AbstractTest;
 import loadbalancer.Balancer;
+import loadbalancer.nodes.info.Node;
 
 import org.hamcrest.core.AnyOf;
 import org.hamcrest.core.Is;
+import org.hamcrest.core.IsNull;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,6 +20,12 @@ public class LeasLoadedPolicyTest extends AbstractTest {
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		balancer = new Balancer(new LeastLoadedPolicy());
+	}
+	
+	@Test
+	public void elect_on_empty() {
+		Node bestNodeToInvoke = balancer.getBestNodeToInvoke(Collections.EMPTY_LIST);
+		assertThat(bestNodeToInvoke, IsNull.nullValue());
 	}
 
 	@Test
